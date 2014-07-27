@@ -1,0 +1,46 @@
+html,
+body {
+    width:100%;
+    height:100%;
+    font-family: sans-serif;
+}
+
+html {
+	display:table;
+}
+
+body {
+    display:table-cell;
+    vertical-align:middle;
+    padding: 0;
+    background-color: #193441;
+}
+
+input {
+    width: 3em;
+}
+
+.testcontainer {
+    max-width:920px;
+	width:100%;
+    margin:0 auto;
+    position: relative;
+    overflow: auto;
+    padding: 2%;
+    color: #193441;
+    border: 3px solid #91AA9D;
+    border-radius: 5px;
+    background-color: #FCFFF5;
+}
+
+.dummytext {
+    width: 30%;
+    float: left;
+    text-align: justify;
+	margin-right: 5%;
+}
+
+.test {
+    width: 45%;
+    float: left;
+}
