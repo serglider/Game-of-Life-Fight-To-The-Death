@@ -5,21 +5,22 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
 		<title>GOL FTD</title>
-		<link rel="stylesheet" type="text/css" href="css/style.css">
+		<link rel="stylesheet" href="css/style.css">
 	</head>
 	<body>
-		<div id="container" class="testcontainer">
-		<!-- <iframe id="iframe" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://www.conwaylife.com/patterns/glider.cells"></iframe><br /> -->
-			<div class="dummytext">
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel augue hendrerit, aliquet purus ac, volutpat augue. Phasellus in elementum erat, sit amet mattis urna. Nam non egestas purus. Nam rutrum massa ac porttitor consequat. Maecenas lacinia rutrum tortor non sodales.</p>
-				<p>In faucibus enim eget fermentum vehicula. Nulla urna libero, pretium non lacinia eu, facilisis at arcu. Curabitur gravida leo purus, eget pellentesque magna mattis non. Etiam eu tempor nunc, quis posuere ligula. Sed volutpat velit nibh, a accumsan purus semper vel. Vestibulum non urna nibh. Proin aliquet placerat tortor, vitae pellentesque mauris vulputate vel.</p>
-				<p>Mauris justo diam, pellentesque et adipiscing quis, volutpat eget nulla. Curabitur pretium mauris lectus, at faucibus libero mattis vel. Nulla volutpat scelerisque dapibus. Vestibulum eu facilisis ipsum. Morbi porta arcu vitae sapien mollis molestie. Duis non viverra libero. Quisque molestie ac arcu quis dapibus. Vestibulum eu nulla aliquam, fringilla augue nec, pharetra lectus.</p>
+		<canvas id="game" class="fxd game"></canvas>
+		<canvas id="grid" class="fxd grid"></canvas>
+		<div id="pane" class="fxd pane">
+			<div class="pane-header">
+				<h2>Game Of Life: Fight To The Death</h2>
+				<h3><span>Rules</span> | <span>Options</span></h3>
+<!-- 				<div class="tab"><h3>Rules</h3></div>
+				<div class="tab-active"><h3>Options</h3></div> -->
 			</div>
-			<div class="test">
-				<p id="results"></p>
-
-			</div>
+			<div class="pane-option"></div>
+			<div class="pane-rules"></div>
 		</div>
-		<script src="js/rle-parser.js"></script>
+		<script src="js/init.js"></script>
+		<script src="js/app.js"></script>
 	</body>
 </html>
