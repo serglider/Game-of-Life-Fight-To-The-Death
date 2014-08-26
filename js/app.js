@@ -1,48 +1,34 @@
-initDrawing();
+drawStage(myC, true);
 
-function init() {
-    var i = 0,
-        t = 1,  //"tribes" are represented by "ones" and "twos"
-        j;
-    C = [];
-    N = [];
-    for ( ; i<NW; i++ ) {
-        C[i] = [];
-        N[i] = [];
-        if ( i > NW/2-1 ) { t = 2; } // next half for another tribe
+// function init() {
+//     var i = 0,
+//         t = 1,  //"tribes" are represented by "ones" and "twos"
+//         j;
+//     C = [];
+//     N = [];
+//     for ( ; i<NW; i++ ) {
+//         C[i] = [];
+//         N[i] = [];
+//         if ( i > NW/2-1 ) { t = 2; } // next half for another tribe
+//         for ( j = 0; j<NH; j++ ) {
+//             C[i][j] = ( Math.random() > P) ? 0 : t;
+//             N[i][j] = 0;
+//             drawCell(i*S, j*S, C[i][j]);
+//         }
+//     }
+//     if ( GO ) { drawGrid(S, NW, NH); }
+// }
+
+function drawStage(arr, half) {
+    var len = arr.length,
+        i = 0, j;
+    for ( ; i < len; i++ ) {
         for ( j = 0; j<NH; j++ ) {
-            C[i][j] = ( Math.random() > P) ? 0 : t;
-            N[i][j] = 0;
-            drawCell(i*S, j*S, C[i][j]);
+            drawCell(i*S, j*S, arr[i][j]);
         }
     }
-    if ( GO ) { drawGrid(S, NW, NH); }
+    if ( GO ) { drawGrid(S, NW, NH, half); }
 }
-
-function initDrawing() {
-    var halfNW = (NW-1)/2;
-    var i = 0,
-        t = 1,  //"tribes" are represented by "ones" and "twos"
-        j;
-    C = [];
-    N = [];
-    for ( ; i<halfNW; i++ ) {
-        C[i] = [];
-        N[i] = [];
-        for ( j = 0; j<NH; j++ ) {
-            C[i][j] = 0;
-            N[i][j] = 0;
-            drawCell(i*S, j*S, C[i][j]);
-        }
-    }
-    if ( GO ) { drawGrid(S, NW, NH, true); }
-}
-
-// 010
-// 001
-// 111
-
-
 
 function drawGrid(s, nw, nh, half) {
     var w = ( half ) ? HW : W;
@@ -65,17 +51,6 @@ function drawLine(sx, sy, fx, fy) {
     gс.lineTo(fx, fy);
     gс.stroke();
 }
-
-
-b.onkeyup = function(e) {
-    switch (e.keyCode) {
-        case 32: showMustGoOn(); break;
-        case 39: if ( !AN ) { NW+=6; init(); } break;
-        case 37: if ( !AN ) { NW-=6; init(); } break;
-        case 38: if ( !AN ) { P+=0.02; init(); } break;
-        case 40: if ( !AN ) { P-=0.02; init(); } break;
-    }
-};
 
 function drawCell(x, y, t) {
     c.fillStyle = CLRS[t];
