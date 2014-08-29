@@ -5,7 +5,7 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
 		<title>GOL FTD</title>
-		<link rel="stylesheet" href="css/style.css">
+		<link rel="stylesheet" href="style.min.css">
 	</head>
 	<body>
 		<canvas id="game" class="fxd game"></canvas>
@@ -14,12 +14,13 @@
 
 			<div class="pane-header">
 				<h2>Game Of Life: Fight To The Death</h2>
-				<h3><span id="nav-rules" class="btn inactive-btn">Rules</span> | <span id="nav-option" class="btn">Options</span></h3>
+
+				<h3><span id="nav-rules" class="btn inactive-btn">Description</span> | <span id="nav-option" class="btn">Configuration</span></h3>
 			</div>
 
 			<div id="pane-option" class="pane-option panels">
 				<!-- form start -->
-				<form onsubmit="return false;" oninput="colnumO.value = colnum.valueAsNumber; popdensO.value = popdens.valueAsNumber; livecells.value = getCellsNumber(popdens.valueAsNumber);  gennumO.value = gennum.valueAsNumber; showgridO.value = !!showgrid.valueAsNumber;">
+				<form onsubmit="return false;" oninput="colnumO.value = colnum.valueAsNumber; live.value = getCellsNumber(popdens.valueAsNumber); popdensO.value = popdens.valueAsNumber.toFixed(2); gennumO.value = gennum.valueAsNumber; showgridO.value = !!showgrid.valueAsNumber; bothtribesO.value = !!bothtribes.valueAsNumber;">
 
 					<div class="slider">
 					<p>Number of columns (7 - 233): <output for="colnum" name="colnumO">51</output></p>
@@ -27,8 +28,8 @@
 					</div>
 
 					<div class="slider">
-					<p>Population density (0.1 - 0.75): <output for="popdens" name="popdensO">0.4</output></p>
-					<p style="font-size: 75%; margin-top:-10px;">Allowed live cells: <output for="popdens" name="livecells"></output></p>
+					<p>Population density (0.1 - 0.75): <output for="popdens" name="popdensO">0.40</output></p>
+					<p style="font-size: 75%; margin-top:-10px;">Max. live cells: <output for="popdens" name="live"></output></p>
 					<input name="popdens" id="popdens" type="range" min="0.1" max="0.75" value="0.4" step="0.01">
 					</div>
 
@@ -42,7 +43,21 @@
 					<input name="showgrid" id="showgrid" type="range" min="0" max="1" value="1" step="1">
 					</div>
 
-					<div id="apply" class="btn-apply">Apply</div>
+					<div class="slider slider-radio">
+					<p>Set both tribes: <output for="showgrid" name="bothtribesO">false</output></p>
+					<input name="bothtribes" id="bothtribes" type="range" min="0" max="1" value="0" step="1">
+					</div>
+
+					<div id="apply" class="btn-box btn-start">Apply configuration</div>
+
+					<div style="width:50%; float:right;">
+						<div id="reset" class="btn-box btn-left">Reset</div>
+					</div>
+					<div style="width:50%; float:left;">
+						<div id="generate" class="btn-box btn-right">Generate</div>
+					</div>
+					<div style="clear:both;"></div>
+
 
 				</form>
 				<!-- form end -->
@@ -58,9 +73,9 @@
 				<h3>Pellentesque</h3>
 				<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
 			</div>
+
+			<div id="start" class="btn-box btn-start">Start</div>
 		</div>
-		<script src="js/init.js"></script>
-		<script src="js/app.js"></script>
-		<script src="js/listeners.js"></script>
+		<script src="app.min.js"></script>
 	</body>
 </html>

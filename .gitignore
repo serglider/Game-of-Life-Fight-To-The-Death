@@ -2,3 +2,5 @@
 *.DS_store
 *.sublime-project
 *.sublime-workspace
+gulpfile.*
+js1k/
