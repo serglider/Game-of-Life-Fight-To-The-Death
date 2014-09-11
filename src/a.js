@@ -6,9 +6,9 @@ var colN = 51,   // initial number of columns
     orangeArr,
     playerLC,
     greenArr,
-    enemyLC,         // number of rows
-    battleArr1,          // array to keep state of each cell
-    battleArr2,
+    enemyLC,
+    bf1,
+    bf2,
     maxLС,
     W, H, dW, dH, halfW, colHN, maxGen,
     CLRS = ["#5A1F00", "#D1570D","#477725", "rgba(0,0,0,1)"],
@@ -24,6 +24,8 @@ var colN = 51,   // initial number of columns
             j: 1000
         }
     },
+    checkjson,
+    checking,
     mTimeout,
     bothtribes,
     dragging,
@@ -32,15 +34,8 @@ var colN = 51,   // initial number of columns
     greens,
     dead,
     generation;
-// A9CC66
-// 477725+
-// FDE792
-// D1570D+
-// 5A1F00+
-function getEl(s) {
-    return document.querySelector(s);
 
-}
+function getEl(s) { return document.querySelector(s); }
 
 var game = getEl("#game"),
     grid = getEl("#grid"),
@@ -56,8 +51,7 @@ var game = getEl("#game"),
     b = document.body,
     windowW = window.innerWidth,
     windowH = window.innerHeight,
-    informer,
-    battleArr1, battleArr2;
+    informer;
 
 function init(showpanel) {
     generation = 0;
@@ -66,7 +60,8 @@ function init(showpanel) {
     greens = 0;
     dead = 0;
     bothtribes = +form.bothtribes.value;
-    maxGen = +form.gennum.value;
+    checking = +form.checking.value;
+    maxGen = getGenNumber(+form.gennum.value);
     S = Math.floor(windowW/colN);
     rowN = Math.floor(windowH/S);
     W = S * colN;
@@ -92,6 +87,7 @@ function init(showpanel) {
     pane.style.width = halfW + "px";
     pane.style.height = H + "px";
     form.live.value = maxLС;
+    form.gennumO.value = maxGen.toString();
 
     if ( bothtribes ) {
         orangeArr = getEmptyArray(colHN, rowN);
@@ -114,29 +110,34 @@ function getCellsNumber(p) {
     return Math.floor(colHN * rowN * p);
 }
 
+function getGenNumber(n) {
+    return ( n ) ? n : Infinity;
+}
+
 function Informer() {
     var self = this,
-        w = W/2,
         h = H/8,
         fs = h/1.2,
-        rectX = (W - w)/2,
         rectY = (H - h)/2,
-        textX2 = rectX + w/2,
-        textX1 = textX2 - h/4,
-        textX3 = textX2 + h/4,
         textY = rectY + h/2;
-
     self.msgOn = false;
-
     self.drawScore = function (cells) {
+        var max = Math.max(cells.oranges, cells.greens),
+            text = max + ":" + max,
+            nv, nx, textX1, textX2, textX3;
         gс.save();
         gс.font = fs + "px fantasy";
+        nw = gс.measureText(text).width + h;
+        nx = (W - nw)/2;
+        textX2 = nx + nw/2,
+        textX1 = textX2 - h/4,
+        textX3 = textX2 + h/4;
         gс.textBaseline = "middle";
         gс.fillStyle = "#5A1F00";
         gс.lineWidth = 5;
         gс.strokeStyle = "#FDE792";
-        gс.fillRect(rectX, rectY, w, h);
-        gс.strokeRect(rectX, rectY, w, h);
+        gс.fillRect(nx, rectY, nw, h);
+        gс.strokeRect(nx, rectY, nw, h);
         gс.fillStyle = "#D1570D";
         gс.textAlign = "end";
         gс.fillText(cells.oranges, textX1, textY);
@@ -151,7 +152,7 @@ function Informer() {
     self.drawMessage = function (m) {
         self.msgOn = true;
         gс.save();
-        gс.font = fs/2 + "px fantasy";
+        gс.font = fs/2 + "px sans-serif";
         var nw = gс.measureText(m).width,
             nx = (W - nw)/2;
         gс.textBaseline = "middle";

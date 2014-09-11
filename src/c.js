@@ -2,14 +2,37 @@
 
 b.onkeyup = function(e) {
     switch (e.keyCode) {
-        case 32: showMustGoOn(); break;
+        case 32: onSpaceBarPress(); break;
         case 27: if ( !animation ) { init(true); } break;
-        case 39: if ( !animation ) { nextGen(); } break;
-        case 37: if ( !animation ) { nextGen(); } break;
-        case 38: if ( !animation ) { nextGen(); } break;
-        case 40: if ( !animation ) { nextGen(); } break;
+        case 39: onArrowPress(); break;
+        case 37: onArrowPress(); break;
+        case 38: onArrowPress(); break;
+        case 40: onArrowPress(); break;
     }
 };
+
+function onArrowPress() {
+    if ( !animation && generation < maxGen ) {
+        // showMustGoOn.onegen = true;
+        if ( !generation ) {
+            startGame();
+        }else {
+            nextGen();
+        }
+    }
+}
+
+function onSpaceBarPress() {
+    if ( generation < maxGen ) {
+        // showMustGoOn.onegen = false;
+        if ( !generation ) {
+            startGame(true);
+        }else {
+            console.log("onSpaceBarPress");
+            showMustGoOn(true);
+        }
+    }
+}
 
 b.onmouseup = function(e) {
     if ( e.target.nodeName === "SPAN" ) {
@@ -26,6 +49,7 @@ b.onmouseup = function(e) {
         }
     }
 };
+
 grid.onmousedown = onCanvasMouseDown;
 grid.onmousemove = onCanvasMouseMove;
 
@@ -62,6 +86,9 @@ function resetArr() {
 }
 
 function applyConfig(e) {
+    var ps = form.getElementsByTagName("p"),
+        i = 0;
+    for ( ; i < ps.length; i++ ) { ps[i].style.opacity = 1; }
     colN = +form.colnum.value;
     P = +form.popdens.value;
     maxGen = +form.gennum.value;
@@ -95,7 +122,7 @@ function onCanvasMouseDown(e) {
 }
 
 function onCanvasMouseMove(e) {
-    if ( dragging && !animation ) {
+    if ( dragging && !generation ) {
         var mouse = getPointerPos(e.target, e),
             i = Math.floor(mouse.x/S),
             j = Math.floor(mouse.y/S);

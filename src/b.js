@@ -2,32 +2,29 @@
 
 function gameInit() {
     addClass(pane, "hidden");
-    if ( bothtribes ) {
-        if ( gridOn ) { drawGrid(S, colN, rowN, "both"); }
-        drawStage(greenArr, "right");
-        drawStage(orangeArr, "left");
-        informer.drawMessage("Hit the spacebar when you're done.");
-        mTimeout = setTimeout(function () {
-            informer.msgOn = false;
-            if ( gridOn ) {
-                if ( gridOn ) { drawGrid(S, colN, rowN, "both"); }
-            }else {
-                gс.clearRect(0, 0, W, H);
-            }
-        }, 1000);
-    }else {
-        startGame(2000);
-    }
+    if ( gridOn ) { drawGrid(S, colN, rowN, "both"); }
+    drawStage(greenArr, "right");
+    drawStage(orangeArr, "left");
+    informer.drawMessage("Hit the spacebar or any arrowes when you're done.");
+    mTimeout = setTimeout(function () {
+        informer.msgOn = false;
+        if ( gridOn ) {
+            if ( gridOn ) { drawGrid(S, colN, rowN, "both"); }
+        }else {
+            gс.clearRect(0, 0, W, H);
+        }
+    }, 1000);
 }
 
-function startGame(delay) {
+function startGame(anim) {
     bf1 = getEmptyArray(colN, rowN);
     bf2 = joinArrays(orangeArr, greenArr);
     if ( gridOn ) { drawGrid(S, colN, rowN ); }
     drawStage(bf2);
     mTimeout = setTimeout(function () {
-        showMustGoOn();
-    }, delay);
+        console.log(anim);
+        showMustGoOn(anim);
+    }, 1000);
 }
 
 function drawStage(arr, half) {
@@ -82,7 +79,7 @@ function drawCell(x, y, t) {
     c.fillRect(x, y, S, S);
 }
 
-function showMustGoOn() {
+function showMustGoOn(anim) {
     if ( informer.msgOn ) {
         clearTimeout(mTimeout);
         informer.msgOn = false;
@@ -92,13 +89,18 @@ function showMustGoOn() {
             gс.clearRect(0, 0, W, H);
         }
     }
-    if ( bothtribes ) {
-        bothtribes = !bothtribes;
-        startGame(500);
-        return;
+    // if ( bothtribes ) {
+    //     bothtribes = !bothtribes;
+    //     startGame(500);
+    //     return;
+    // }
+    if ( !anim ) {
+        console.log("nextGen");
+        nextGen();
+    }else {
+        animation = !animation;
+        if ( animation ) { requestAnimationFrame(nextGen); }
     }
-    animation = !animation;
-    if ( animation ) { requestAnimationFrame(nextGen); }
 }
 
 function nextGen() {
@@ -111,15 +113,24 @@ function nextGen() {
     }
     bf1 = [bf2, bf2 = bf1][0];   // swap the arrays
     generation++;
+
     if ( animation ) {
+        if ( checking ) {
+            if ( bf2.check ) {
+                animation = checkjson !== JSON.stringify(bf2);
+                bf2.check = false;
+            }
+            if ( generation%25 === 0 ) {
+                animation = checkCellNum(bf2, true);
+                bf2.check = true;
+                checkjson = JSON.stringify(bf2);
+            }
+            if ( !animation ) { displayResults(); }
+        }
         if ( generation >= maxGen ) {
             animation = !animation;
             displayResults();
         }else {
-            if ( generation%25 === 0 ) {
-                animation = checkCellNum(bf1, true);
-                if ( !animation ) { displayResults(); }
-            }
             requestAnimationFrame(nextGen);
         }
     }else {

@@ -60,6 +60,7 @@ body {
 
 .btn-start {
   width: 340px;
+  margin-top: 40px;
 }
 
 .btn-right {
@@ -84,7 +85,7 @@ body {
 
 .slider {
   width: 360px;
-  margin: 40px auto;
+  margin: 18px auto;
 }
 
 input[type="range"] {
