@@ -2,11 +2,11 @@
 Game-of-Life-Fight-To-The-Death
 ===============================
 
- This is an entry for the [Js13kGames](http://js13kgames.com/) competition - 2014:  it's yet another view on the classic John Conway's game based on [my entry](http://js1k.com/2014-dragons/demo/1912) for the [JS1K](http://js1k.com] competition - 2014.
+This is an entry for the [Js13kGames](http://js13kgames.com/) competition - 2014:  it's yet another view on the classic John Conway's game based on [my entry](http://js1k.com/2014-dragons/demo/1912) for the [JS1K](http://js1k.com] competition - 2014.
 
 ### Game
 
-Game Of Life: Fight To The Death is yet another view on the classic John Conway's game/model. If you know nothing about classics please read the Wikipedia <a href="http://en.wikipedia.org/wiki/Conway's_Game_of_Life">article</a> and if you want to extend your knowledge and get inspired please visit awesome <a href="http://conwaylife.com/wiki/Main_Page">conwaylife.com</a>
+Game Of Life: Fight To The Death is yet another view on the classic John Conway's game/model. If you know nothing about classics please read the Wikipedia [article](http://en.wikipedia.org/wiki/Conway's_Game_of_Life) and if you want to extend your knowledge and get inspired please visit awesome [conwaylife.com](http://conwaylife.com/wiki/Main_Page)
 
 The main added feature of this version is that you have two tribes of the living cells. These two tribes will fight each other to the death after you set a battle field. Well, actually not necessarily to the death, because you can limit number of generation to pass. Please read on to learn what else you can configurate.
 
