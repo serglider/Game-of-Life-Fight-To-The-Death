@@ -6,6 +6,7 @@ function gameInit() {
     drawStage(greenArr, "right");
     drawStage(orangeArr, "left");
     informer.drawMessage("Hit the spacebar or any arrowes when you're done.");
+    gamestarted = true;
     mTimeout = setTimeout(function () {
         informer.msgOn = false;
         if ( gridOn ) {
@@ -89,13 +90,7 @@ function showMustGoOn(anim) {
             gс.clearRect(0, 0, W, H);
         }
     }
-    // if ( bothtribes ) {
-    //     bothtribes = !bothtribes;
-    //     startGame(500);
-    //     return;
-    // }
     if ( !anim ) {
-        console.log("nextGen");
         nextGen();
     }else {
         animation = !animation;
@@ -146,6 +141,7 @@ function checkState() {
 }
 
 function displayResults() {
+    gamestarted = false;
     cellnum = checkCellNum(bf2);
     informer.drawScore(cellnum);
 }

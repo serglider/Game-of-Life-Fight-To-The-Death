@@ -3,6 +3,10 @@ body {
     background: #A9CC66;
 }
 
+a {
+  color: #A9CC66;
+}
+
 .fxd {
     position: fixed;
 }
@@ -20,6 +24,8 @@ body {
     font-family: sans-serif;
     background: #FDE792;
     color: #5A1F00;
+    overflow: auto;
+    /*padding-bottom: 30px;*/
 }
 
 .pane-header {
@@ -31,7 +37,11 @@ body {
 }
 
 .panels {
-    padding: 15px;
+    /*padding: 15px;*/
+}
+
+.pane-rules {
+  padding: 30px;
 }
 
 .btn {

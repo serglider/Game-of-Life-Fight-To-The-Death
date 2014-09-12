@@ -1,7 +1,7 @@
 /* jshint strict: false */
-var colN = 51,   // initial number of columns
-    P = 0.5,    // density of the population
-    S,          // cell's size
+var colN = 51,
+    P = 0.5,
+    S,
     rowN,
     orangeArr,
     playerLC,
@@ -12,7 +12,7 @@ var colN = 51,   // initial number of columns
     maxLС,
     W, H, dW, dH, halfW, colHN, maxGen,
     CLRS = ["#5A1F00", "#D1570D","#477725", "rgba(0,0,0,1)"],
-    animation = false, // mark that animation's on
+    animation = false,
     gridOn = true,
     cache = {
         greens: {
@@ -26,6 +26,7 @@ var colN = 51,   // initial number of columns
     },
     checkjson,
     checking,
+    gamestarted,
     mTimeout,
     bothtribes,
     dragging,
@@ -141,12 +142,15 @@ function Informer() {
         gс.fillStyle = "#D1570D";
         gс.textAlign = "end";
         gс.fillText(cells.oranges, textX1, textY);
-        gс.textAlign = "center";
-        gс.fillStyle = "#FDE792";
-        gс.fillText(":", textX2, textY);
         gс.textAlign = "start";
         gс.fillStyle = "#477725";
         gс.fillText(cells.greens, textX3, textY);
+        gс.textAlign = "center";
+        gс.fillStyle = "#FDE792";
+        gс.fillText(":", textX2, textY);
+        gс.font = fs/2 + "px sans-serif";
+        gс.fillText("G" + generation, textX2, textY + fs);
+
         gс.restore();
     };
     self.drawMessage = function (m) {

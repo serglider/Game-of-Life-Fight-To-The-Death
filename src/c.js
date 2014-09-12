@@ -12,8 +12,7 @@ b.onkeyup = function(e) {
 };
 
 function onArrowPress() {
-    if ( !animation && generation < maxGen ) {
-        // showMustGoOn.onegen = true;
+    if ( gamestarted && !animation && generation < maxGen ) {
         if ( !generation ) {
             startGame();
         }else {
@@ -23,12 +22,10 @@ function onArrowPress() {
 }
 
 function onSpaceBarPress() {
-    if ( generation < maxGen ) {
-        // showMustGoOn.onegen = false;
+    if ( gamestarted && generation < maxGen ) {
         if ( !generation ) {
             startGame(true);
         }else {
-            console.log("onSpaceBarPress");
             showMustGoOn(true);
         }
     }
