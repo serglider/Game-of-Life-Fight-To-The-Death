@@ -4,6 +4,8 @@ Game ofLife: Fight To The Death
 
 This is an entry for the [Js13kGames](http://js13kgames.com/) competition - 2014:  it's yet another view on the classic John Conway's game based on [my entry](http://js1k.com/2014-dragons/demo/1912) for the [JS1K](http://js1k.com) competition - 2014.
 
+Update: The game is submitted and accepted on Js13kGames. So you can try it [here.](http://js13kgames.com/entries/game-of-life-fight-to-the-death)
+
 ### Game
 
 Game Of Life: Fight To The Death is yet another view on the classic John Conway's game/model. If you know nothing about classics please read the Wikipedia [article](http://en.wikipedia.org/wiki/Conway's_Game_of_Life) and if you want to extend your knowledge and get inspired please visit awesome [conwaylife.com](http://conwaylife.com/wiki/Main_Page)
